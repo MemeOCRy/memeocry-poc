@@ -1,0 +1,19 @@
+[project]
+name = "memeocry-poc"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "easyocr>=1.7.2",
+    "rapidfuzz>=3.14.3",
+    "telethon>=1.42.0",
+]
+
+[dependency-groups]
+lint = [
+    "ruff>=0.14.4",
+]
+test = [
+    "pytest>=9.0.0",
+]

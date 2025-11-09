@@ -1,19 +1,28 @@
 [project]
-name = "memeocry-poc"
-version = "0.1.0"
+name = "memeocry"
+version = "0.1"
 description = "Add your description here"
 readme = "README.md"
+authors = [{ name = "Alexander Ikonomou" }]
+license = "Apache-2.0"
 requires-python = ">=3.14"
+classifiers = []
 dependencies = [
     "easyocr>=1.7.2",
     "rapidfuzz>=3.14.3",
     "telethon>=1.42.0",
+    "click",
 ]
 
-[dependency-groups]
-lint = [
-    "ruff>=0.14.4",
-]
-test = [
-    "pytest>=9.0.0",
-]
+[project.urls]
+Homepage = "https://github.com/ikelax/memeocry"
+Changelog = "https://github.com/ikelax/memeocry/releases"
+Issues = "https://github.com/ikelax/memeocry/issues"
+CI = "https://github.com/ikelax/memeocry/actions"
+
+[project.scripts]
+memeocry = "memeocry.cli:cli"
+
+[project.optional-dependencies]
+lint = ["ruff>=0.14.4"]
+test = ["pytest>=9.0.0"]

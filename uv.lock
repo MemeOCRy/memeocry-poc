@@ -147,7 +147,7 @@ wheels = [
 [[package]]
 name = "memeocry"
 version = "0.1"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "click" },
     { name = "easyocr" },
@@ -156,11 +156,6 @@ dependencies = [
 ]
 
 [package.optional-dependencies]
-test = [
-    { name = "pytest" },
-]
-
-[package.dev-dependencies]
 lint = [
     { name = "ruff" },
 ]
@@ -172,15 +167,12 @@ test = [
 requires-dist = [
     { name = "click" },
     { name = "easyocr", specifier = ">=1.7.2" },
-    { name = "pytest", marker = "extra == 'test'" },
+    { name = "pytest", marker = "extra == 'test'", specifier = ">=9.0.0" },
     { name = "rapidfuzz", specifier = ">=3.14.3" },
+    { name = "ruff", marker = "extra == 'lint'", specifier = ">=0.14.4" },
     { name = "telethon", specifier = ">=1.42.0" },
 ]
-provides-extras = ["test"]
-
-[package.metadata.requires-dev]
-lint = [{ name = "ruff", specifier = ">=0.14.4" }]
-test = [{ name = "pytest", specifier = ">=9.0.0" }]
+provides-extras = ["lint", "test"]
 
 [[package]]
 name = "mpmath"

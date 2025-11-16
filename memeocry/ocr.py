@@ -7,6 +7,8 @@ from rapidfuzz import fuzz, process, utils
 
 memeocry_path = "memeocry.json"
 
+supported_image_format = (".jpg", ".jpeg", ".png", ".bmp", ".tiff", ".tif", ".webp")
+
 
 def extract_text_for_lang(image_paths: list[str], lang: str) -> list[dict[str, str]]:
     reader = easyocr.Reader([lang])
@@ -26,12 +28,16 @@ def extract_text(image_paths: list[str], langs: list[str]) -> list[dict[str, str
 
 def update(folder: str, langs: list[str]) -> int:
     images = [
-        join(folder, image) for image in listdir(folder) if isfile(join(folder, image))
+        join(folder, image) for image in listdir(folder) if isImage(folder, image)
     ]
     texts = extract_text(images, langs)
     with open(memeocry_path, mode="w", encoding="utf-8") as file:
         json.dump(texts, file, ensure_ascii=False, indent=4, sort_keys=True)
     return len(images)
+
+
+def isImage(folder, image):
+    return isfile(join(folder, image)) and image.endswith(supported_image_format)
 
 
 def search(query: str):
